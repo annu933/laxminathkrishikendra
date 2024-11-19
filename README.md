@@ -1,4 +1,4 @@
-<h2>Laxminath Fetilizer Shop</h2>
+<h2>Bag Shop</h2>
 
 <h3>config</h3>
 
