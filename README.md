@@ -44,3 +44,25 @@ connect the application to mongodb server
 <h3>.gitignore</h3>
 
 <h3>app.js</h3>
+
+
+<!-- create user -->
+<p>"/register" route</p>
+
+<!-- setup -->
+<p>hash(encrypt the password)</p>
+<p>need jwt sign data</p>
+<p>set cookie</p>
+
+<!--  -->
+<p>creted keys.js file: JWT_KEY: process.env.JWT_KEY;</p>
+<p>install dotenv , import it on app.js : require("dotenv").config(); --> now we can use all variable which were defined on env file </p>
+<p>move the jwt.sign code to another file on utils folder</p>
+<p>import it on userRouter file and pass the user data</p>
+
+<!-- set the middleware -->
+<p>isLoggedin</p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
