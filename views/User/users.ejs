@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div>
+        <div class="p-4  bg-zinc-800 flex justify-between">
+            <h1 class="text-xl text-white font-semibold">All Users</h1>
+            <div class="flex justify-between">
+                <a href="/register">
+                    <input  value="Sign Up" class="p-2 bg-blue-500 text-white w-20 rounded-md mr-2 text-center cursor-pointer"/>
+                    </a>
+                <a href="/login">
+                    <input  value="Login" class="p-2 bg-orange-500 text-white w-20 rounded-md text-center cursor-pointer"/>
+                    </a>
+            </div>
+        </div>
+    </div>
+   <div class="">
+        <div class="flex w-full  flex-wrap">
+        <% user.forEach(item => { %>
+
+                <div class="card bg-zinc-800 w-1/6 h-15 m-4 text-white p-2 rounded-md">
+                    <p>
+                        <%= item.fullname %>
+                    </p>
+                    <p>
+                        <%= item.email %>
+                    </p>
+                </div>
+                
+                <% }) %>
+        </div>
+   </div>
+</body>
+</html>
