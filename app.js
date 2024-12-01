@@ -22,8 +22,8 @@ app.use(cookieParser());
 // setup flash message
 app.use(
   expressSession({
-    resave: false,
-    saveUninitialized: false,
+    resave: true,
+    saveUninitialized: true,
     secret: process.env.EXPRESS_SESSION_SECRET,
   })
 );
@@ -31,6 +31,10 @@ app.use(flash());
 // -END
 app.use(express.static(path.join(__dirname, "public")));
 app.set("view engine", "ejs");
+app.set("views", [
+  path.join(__dirname, "views"),
+  path.join(__dirname, "views/User/"),
+]);
 
 app.use("/", indexRouter);
 app.use("/owners", ownersRouter);
@@ -41,4 +45,4 @@ app.get("/", (req, res) => {
   res.send("hey annu");
 });
 
-app.listen(3001);
+app.listen(3000);

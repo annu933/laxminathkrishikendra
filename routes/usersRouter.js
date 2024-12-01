@@ -5,9 +5,15 @@ const {
   loginUser,
   logout,
 } = require("../controllers/authController");
+const userModel = require("../models/user-model");
 
-router.get("/", function (req, res) {
-  res.send("user-router");
+router.get("/", async function (req, res) {
+  try {
+    let users = await userModel.find();
+    res.render("/shop", { user: users });
+  } catch (error) {
+    res.status(500).send("Error fetching users");
+  }
 });
 
 router.post("/register", registerUser);
