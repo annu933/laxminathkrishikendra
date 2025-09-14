@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+</head>
+<body>
+    <main>
+        <div>
+        <div class="header">
+            <h1 class="text-xl text-white font-semibold">All Users</h1>
+            <div class="btn-group">
+                <a href="/register">
+                    <input  value="Sign Up" class="button signup"/>
+                    </a>
+                <a href="/login">
+                    <input  value="Login" class="button login"/>
+                    </a>
+            </div>
+        </div>
+    </div>
+   <div class="">
+        <div class="flex w-full  flex-wrap cardBox">
+        <% user.forEach(item => { %>
+
+                <div class="card bg-zinc-800 w-1/6 h-15 m-4 text-white p-2 rounded-md">
+                    <p class="userName">
+                        <%= item.fullname %>
+                    </p>
+                    <p>
+                        <%= item.email %>
+                    </p>
+                </div>
+                
+                <% }) %>
+        </div>
+   </div>
+    </main>
+</body>
+</html>
