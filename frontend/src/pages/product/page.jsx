@@ -4,12 +4,12 @@ const React = require("react");
 
 function Product() {
   const [data, setData] = React.useState([]);
-    console.log(" data",data)
+  console.log(" data", data);
 
-    React.useEffect(() => {
+  React.useEffect(() => {
     fetch("/product")
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         console.log("Fetched data:", data);
         setData(data);
       });
@@ -17,7 +17,7 @@ function Product() {
   return (
     <div>
       <h1>All Products</h1>
-       <Link to="/products/create">
+      <Link to="/products/create">
         <button>Add Product</button>
       </Link>
       <table border="1" cellPadding="10">
@@ -30,14 +30,15 @@ function Product() {
           </tr>
         </thead>
         <tbody>
-          {data && data.map((product, index) => (
-            <tr key={index}>
-              <td>{product.name}</td>
-              <td>{product.type}</td>
-              <td>{product.price}</td>
-              <td>{product.stock}</td>
-            </tr>
-          ))}
+          {data &&
+            data.map((product, index) => (
+              <tr key={index}>
+                <td>{product.name}</td>
+                <td>{product.type}</td>
+                <td>{product.price}</td>
+                <td>{product.stock}</td>
+              </tr>
+            ))}
         </tbody>
       </table>
     </div>

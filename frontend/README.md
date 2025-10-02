@@ -69,12 +69,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-
-
-
 /------------------------------Details----------------------------------------
-
-
 
 <h2>Bag Shop</h2>
 
@@ -123,7 +118,6 @@ connect the application to mongodb server
 
 <h3>app.js</h3>
 
-
 <!-- create user -->
 <p>"/register" route</p>
 
@@ -166,18 +160,18 @@ connect the application to mongodb server
 <p>to setup flash message: that use session : to create session-> using express session</p>
 <p></p>
 
-
-
-If sysytem not found your DB file. 
+If sysytem not found your DB file.
 so just run this code , mongod --dbpath "D:/annu/bagshop/data"
 if you have data/db file
 
 <!-- 23july -->
 
 <!-- frontend -->
+
 npm start
 
 <!-- backend -->
-mongod - //run mongodb 
+
+mongod - //run mongodb
 mongod --dbpath "D:/annu/bagshop/data" - //to connect db file
-npx nodemon app.js -  //to start nodeJS server
+npx nodemon app.js - //to start nodeJS server

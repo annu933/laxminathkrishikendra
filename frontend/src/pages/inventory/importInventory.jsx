@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import * as XLSX from 'xlsx';
+import React, { useState } from "react";
+import * as XLSX from "xlsx";
 
 const InventoryUpload = () => {
   const [sheetData, setSheetData] = useState([]);
@@ -9,7 +9,7 @@ const InventoryUpload = () => {
     if (!file) return;
 
     const data = await file.arrayBuffer();
-    const workbook = XLSX.read(data, { type: 'array' });
+    const workbook = XLSX.read(data, { type: "array" });
 
     const sheetName = workbook.SheetNames[0];
     const sheet = workbook.Sheets[sheetName];
@@ -21,7 +21,7 @@ const InventoryUpload = () => {
 
   const handleSubmit = async () => {
     if (sheetData.length === 0) {
-      alert('No data to upload');
+      alert("No data to upload");
       return;
     }
 
