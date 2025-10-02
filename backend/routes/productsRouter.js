@@ -34,7 +34,6 @@ router.get("/", async (req, res) => {
 
 router.post("/create",upload.none(), async (req, res) => {
   const { name, type, price, stock } = req.body;
-
   try {
     await Fertilizer.create({ name, type, price, stock });
        res.status(201).json({ message: "Fertilizer created" });
@@ -43,6 +42,19 @@ router.post("/create",upload.none(), async (req, res) => {
     res.status(500).send("Error creating fertilizer");
   }
 });
+
+// router.post("/create",async(req,res)=>{
+//   const{name,type,price,stock} = req.body;
+
+//   try{
+//     await Fertilizer.create({name,type,price,stock});
+//     res.status(201).json({message: "Product has created!"});
+
+//   }catch(err){
+//     console.error(err);
+//     res.status(500).json({message: "Product has not created"}).send("Product has not created")
+//   }
+// })
 
 
 // Get single fertilizer

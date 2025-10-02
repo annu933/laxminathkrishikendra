@@ -65,7 +65,7 @@ const SaleForm = () => {
         setFormData({ quantitySold: "", sellingPrice: "", customerName: "" });
         setSelectedProduct(null);
         setSelectedProductId("");
-        navigate('/inventory'); 
+        navigate("/inventory");
       } else {
         alert("Failed to record sale.");
       }
@@ -87,16 +87,24 @@ const SaleForm = () => {
             required
           >
             <option value="">-- Select --</option>
-            {Array.isArray(products) && products.map((product) => (
-              <option key={product._id} value={product._id}>
-                {product.name}
-              </option>
-            ))}
+            {Array.isArray(products) &&
+              products.map((product) => (
+                <option key={product._id} value={product._id}>
+                  {product.name}
+                </option>
+              ))}
           </select>
         </label>
 
         {selectedProduct && (
-          <div style={{ background: "#f5f5f5", padding: "10px", marginTop: "10px", borderRadius: "4px" }}>
+          <div
+            style={{
+              background: "#f5f5f5",
+              padding: "10px",
+              marginTop: "10px",
+              borderRadius: "4px",
+            }}
+          >
             <p>
               <strong>Available Stock:</strong> {selectedProduct.quantity}
             </p>

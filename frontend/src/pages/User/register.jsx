@@ -24,7 +24,6 @@
 // </body>
 // </html> -->
 
-
 import React from "react";
 
 const Register = () => {
