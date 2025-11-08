@@ -17,7 +17,7 @@
 
 const express = require('express');
 const router = express.Router();
-const Inventory = require('../../models/Inventory');
+const Inventory = require('../../models/Inventorys');
 
 // Bulk create from Excel
 router.post('/bulk-create', async (req, res) => {

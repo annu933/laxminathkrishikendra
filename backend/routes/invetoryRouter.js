@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const Inventory = require("../models/Inventory"); // ✅ use Inventory model
+const Inventory = require("../models/Inventorys"); // ✅ use Inventory model
 const multer = require("multer");
 
 const upload = multer();
