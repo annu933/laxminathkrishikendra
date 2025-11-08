@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import "../dashboard/dashboard.css"; // We'll write styles here
 import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const navigate = useNavigate();
+  const [dashboardData, setDashboardData] = useState();
 
   React.useEffect(() => {
     const fetchDashboard = async () => {
@@ -11,6 +12,7 @@ const Dashboard = () => {
         const res = await fetch("/dashboard"); // proxy will send to 3001
         const data = await res.json();
         console.log(data); // { summary: 12 }
+        setDashboardData(data?.summary);
       } catch (err) {
         console.error("Error fetching dashboard:", err);
       }
@@ -18,11 +20,24 @@ const Dashboard = () => {
 
     fetchDashboard();
   }, []);
+  console.log("dashboardData", dashboardData);
   return (
     <div className="dashboard-container">
       <h1 className="dashboard-title">Fertilizer Shop Dashboard</h1>
 
       <div className="dashboard-cards">
+        <div className="card green" onClick={() => navigate("/inventory")}>
+          <h3>Total Inventory</h3>
+          <p>{dashboardData?.total_inventory}</p>
+        </div>
+        <div className="card blue" onClick={() => navigate("/inventory")}>
+          <h3>Total Product</h3>
+          <p>{dashboardData?.total_product}</p>
+        </div>
+        <div className="card red" onClick={() => navigate("/inventory")}>
+          <h3>Total Sale</h3>
+          <p>{dashboardData?.total_sales}</p>
+        </div>
         <div className="card blue" onClick={() => navigate("/inventory")}>
           <h3>Total Stock</h3>
           <p>1,200 kg</p>

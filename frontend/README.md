@@ -173,5 +173,5 @@ npm start
 <!-- backend -->
 
 mongod - //run mongodb
-mongod --dbpath "D:/annu/bagshop/data" - //to connect db file
+mongod --dbpath "E:/annu/bagshop/data" - //to connect db file
 npx nodemon app.js - //to start nodeJS server

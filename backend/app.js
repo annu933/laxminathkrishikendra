@@ -28,12 +28,12 @@ require("./config/mongoose-connection");
 
 // Routes
 const dashboardRoute = require("./routes/dashboardRouter");
-const fertilizerRoute = require("./routes/productsRouter");
+const productRoute = require("./routes/productsRouter");
 const inventoryRouter = require("./routes/invetoryRouter");
 const inventoryBulkCreate = require("./routes/inventory/bulk_create");
 const saleRouter = require("./routes/saleRouter");
 app.use("/dashboard", dashboardRoute);
-app.use("/product", fertilizerRoute);
+app.use("/product", productRoute);
 app.use("/inventory", inventoryRouter);
 app.use("/inventory", inventoryBulkCreate);
 app.use("/sales", saleRouter);
