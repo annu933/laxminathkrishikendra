@@ -1,3 +1,5 @@
+
+# Define the order of jobs (install → test → build → deploy)
 stages:
   - install
   - test
