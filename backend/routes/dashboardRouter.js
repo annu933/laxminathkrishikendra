@@ -2,7 +2,7 @@ const express = require("express");
 const Inventory = require("../models/Inventorys");
 const dashboard = require("../models/dashboard");
 const Product = require("../models/Product");
-const Sale = require("../models/Sale");
+const Sale = require("../models/Sales");
 
 const router = express.Router();
 

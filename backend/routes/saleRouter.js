@@ -1,7 +1,7 @@
 // routes/saleRouter.js
 const express = require("express");
 const router = express.Router();
-const Sale = require("../models/Sale");
+const Sale = require("../models/Sales");
 const Inventory = require("../models/Inventorys");
 
 
