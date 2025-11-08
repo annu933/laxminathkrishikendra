@@ -1,30 +1,30 @@
-// routes/fertilizers.js
+// routes/Product.js
 const express = require("express");
 const router = express.Router();
 const multer = require("multer");
-const Fertilizer =  require("../models/Fertilizer.js");
+const Product = require("../models/Product");
 
 const upload = multer();
 
-// Create fertilizer
+// Create Product
 // router.post("/", async (req, res) => {
 //   try {
-//     const newFertilizer = new Fertilizer(req.body);
-//     const saved = await newFertilizer.save();
+//     const newProduct = new Product(req.body);
+//     const saved = await newProduct.save();
 //     res.status(201).json(saved);
 //   } catch (err) {
 //     res.status(400).json({ error: err.message });
 //   }
 // });
 
-// Get all fertilizers
+// Get all Product
 // router.get("/product/all", async (req, res) => {
-//   const data = await Fertilizer.find();
+//   const data = await Product.find();
 //   res.json(data);
 // });
 
 router.get("/", async (req, res) => {
-  const data = await Fertilizer.find();
+  const data = await Product.find();
   res.json(data);
 });
 
@@ -32,14 +32,14 @@ router.get("/", async (req, res) => {
 //    res.json({ message: "Product creation endpoint hit" });
 // });
 
-router.post("/create",upload.none(), async (req, res) => {
+router.post("/create", upload.none(), async (req, res) => {
   const { name, type, price, stock } = req.body;
   try {
-    await Fertilizer.create({ name, type, price, stock });
-       res.status(201).json({ message: "Fertilizer created" });
+    await Product.create({ name, type, price, stock });
+    res.status(201).json({ message: "Product created" });
   } catch (err) {
     console.error(err);
-    res.status(500).send("Error creating fertilizer");
+    res.status(500).send("Error creating Product");
   }
 });
 
@@ -47,7 +47,7 @@ router.post("/create",upload.none(), async (req, res) => {
 //   const{name,type,price,stock} = req.body;
 
 //   try{
-//     await Fertilizer.create({name,type,price,stock});
+//     await Product.create({name,type,price,stock});
 //     res.status(201).json({message: "Product has created!"});
 
 //   }catch(err){
@@ -56,24 +56,23 @@ router.post("/create",upload.none(), async (req, res) => {
 //   }
 // })
 
-
-// Get single fertilizer
+// Get single Product
 // router.get("/:id", async (req, res) => {
-//   const item = await Fertilizer.findById(req.params.id);
+//   const item = await Product.findById(req.params.id);
 //   res.json(item);
 // });
 
-// Update fertilizer
+// Update Product
 // router.put("/:id", async (req, res) => {
-//   const updated = await Fertilizer.findByIdAndUpdate(req.params.id, req.body, {
+//   const updated = await Product.findByIdAndUpdate(req.params.id, req.body, {
 //     new: true,
 //   });
 //   res.json(updated);
 // });
 
-// Delete fertilizer
+// Delete Product
 // router.delete("/:id", async (req, res) => {
-//   await Fertilizer.findByIdAndDelete(req.params.id);
+//   await Product.findByIdAndDelete(req.params.id);
 //   res.json({ message: "Deleted successfully" });
 // });
 
