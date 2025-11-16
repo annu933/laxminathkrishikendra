@@ -1,3 +1,5 @@
+import { axiosInstance } from "../../context/ApiContext";
+
 const React = require("react");
 
 function Create() {
@@ -6,23 +8,17 @@ function Create() {
 
     const formData = new FormData(e.target); // auto-collects all input values
     const data = Object.fromEntries(new FormData(e.target).entries());
-    const response = await fetch("/product/create", {
-      method: "POST",
-      body: formData, // no need for headers like 'Content-Type'
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    });
+
+    try {
+      const response = await axiosInstance.post("/product/create", data);
+      console.log("response-data", response.data)
+      return response.data;
+    } catch (error) {
+      console.log(error)
+    }
+
 
     console.log("formData", formData);
-
-    console.log("product-response", response);
-
-    if (response.ok) {
-      alert("Product created successfully");
-      e.target.reset();
-    } else {
-      alert("Failed to create product");
-    }
   };
 
   return (

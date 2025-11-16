@@ -1,19 +1,21 @@
 import { Link } from "react-router-dom";
+import { ApiContext } from "../../context/ApiContext";
 
 const React = require("react");
 
 function Product() {
+  const axiosInstance = React.useContext(ApiContext);
   const [data, setData] = React.useState([]);
-  console.log(" data", data);
 
   React.useEffect(() => {
-    fetch("/product")
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("Fetched data:", data);
-        setData(data);
-      });
+    axiosInstance.get("/product")
+      .then((res) => {
+        console.log("Fetched data:", res.data);
+        setData(res.data);
+      })
+      .catch(err => console.log("error:", err));
   }, []);
+
   return (
     <div>
       <h1>All Products</h1>

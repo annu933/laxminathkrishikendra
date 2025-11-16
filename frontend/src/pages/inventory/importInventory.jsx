@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import * as XLSX from "xlsx";
+import { axiosInstance } from "../../context/ApiContext";
 
 const InventoryUpload = () => {
   const [sheetData, setSheetData] = useState([]);
@@ -25,18 +26,12 @@ const InventoryUpload = () => {
       return;
     }
 
-    const res = await fetch("/inventory/bulk-create", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(sheetData),
-    });
-
-    if (res.ok) {
-      alert("Inventory uploaded successfully!");
-    } else {
-      alert("Upload failed");
+    try {
+      const response = await axiosInstance.post("/inventory/bulk-create", sheetData);
+      console.log("response-data", response.data)
+      return response.data;
+    } catch (error) {
+      console.log(error)
     }
   };
 

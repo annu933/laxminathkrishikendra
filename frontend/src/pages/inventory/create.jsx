@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { axiosInstance } from "../../context/ApiContext";
 
 const CreateInventory = ({ onAddSuccess }) => {
   const [formData, setFormData] = useState({
@@ -22,17 +23,12 @@ const CreateInventory = ({ onAddSuccess }) => {
 
     const formData = new FormData(e.target); // auto-collects all input values
 
-    const response = await fetch("/inventory/create", {
-      method: "POST",
-      body: formData, // no need for headers like 'Content-Type'
-    });
-    console.log("response", response);
-
-    if (response.ok) {
-      alert("Product created successfully");
-      e.target.reset();
-    } else {
-      alert("Failed to create product");
+    try {
+      const response = await axiosInstance.post("/inventory/create", formData);
+      console.log("response-data", response.data)
+      return response.data;
+    } catch (error) {
+      console.log(error)
     }
   };
 

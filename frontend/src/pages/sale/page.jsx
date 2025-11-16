@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
+import { axiosInstance } from "../../context/ApiContext";
 
 const SalesTable = () => {
   const [sales, setSales] = useState([]);
-
-  useEffect(() => {
-    fetch("/sales")
-      .then((res) => res.json())
-      .then((data) => setSales(data))
-      .catch((err) => console.error("Error fetching sales:", err));
+  React.useEffect(() => {
+    axiosInstance.get("/sales")
+      .then((res) => {
+        console.log("Fetched data:", res.data);
+        setSales(res.data);
+      })
+      .catch(err => console.log("error:", err));
   }, []);
 
   return (
