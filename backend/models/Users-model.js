@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb://127.0.0.1:27017/bagshop");
+// mongoose.connect("mongodb://127.0.0.1:27017"); //LOCAL MongoDB
+mongoose.connect(process.env.MONGO_URI); //MongoDB Atlas connection
 
 const userSchema = mongoose.Schema({
   fullname: { type: String, required: true, unique: true },
