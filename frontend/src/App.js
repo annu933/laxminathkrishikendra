@@ -11,19 +11,25 @@ import Sales from "./pages/sale/page";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/products" element={<Product />} />
-        <Route path="/products/create" element={<CreateProduct />} />
-        <Route path="/inventory" element={<Inventory />} />
-        <Route path="/inventory/create" element={<InventoryCreate />} />
-        <Route path="/inventory/import" element={<InventoryUpload />} />
-        <Route path="/inventory/edit/:id" element={<EditInventory />} />
-        <Route path="/sale" element={<Sales />} />
-        <Route path="/sale/create" element={<SaleForm />} />
-      </Routes>
-    </Router>
+    <>
+      <Router>
+        <Routes>
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/products" element={<Product />} />
+          <Route path="/products/create" element={<CreateProduct />} />
+          <Route path="/inventory" element={<Inventory />} />
+          <Route path="/inventory/create" element={<InventoryCreate />} />
+          <Route path="/inventory/import" element={<InventoryUpload />} />
+          <Route path="/inventory/edit/:id" element={<EditInventory />} />
+          <Route path="/sale" element={<Sales />} />
+          <Route path="/sale/create" element={<SaleForm />} />
+        </Routes>
+      </Router>
+
+      <div>
+        <h1 style={{ textAlign: "center" }}>Laxminath Krishi Kendra</h1>
+      </div>
+    </>
   );
 }
 export default App;
