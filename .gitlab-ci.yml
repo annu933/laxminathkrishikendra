@@ -1,0 +1,50 @@
+
+# Define the order of jobs (install → test → build → deploy)
+stages:
+  - install
+  - test
+  - build
+  - deploy
+
+variables:
+  NODE_ENV: production
+
+cache:
+  paths:
+    - node_modules/
+
+install_dependencies:
+  stage: install
+  image: node:20
+  script:
+    - npm install
+
+test:
+  stage: test
+  image: node:20
+  script:
+    - npm test
+
+build:
+  stage: build
+  image: node:20
+  script:
+    - npm run build
+  artifacts:
+    paths:
+      - build/
+
+deploy:
+  stage: deploy
+  image: alpine:latest
+  before_script:
+    - apk add --no-cache openssh-client
+  script:
+    - mkdir -p ~/.ssh
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    - ssh-keyscan your.server.com >> ~/.ssh/known_hosts
+    - scp -r build/* user@your.server.com:/var/www/project
+    - ssh user@your.server.com "pm2 restart project"
+  only:
+    - main

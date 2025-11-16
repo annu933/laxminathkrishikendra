@@ -1,0 +1,35 @@
+user-details
+
+usermodel
+full name - string
+email - string
+password - string
+cart - array
+isadmin - boolion
+orders - array
+contact - number
+picture - string
+
+
+
+product-details
+
+product name
+image
+price
+discount
+bgcolor
+textcolor
+
+
+
+routes:
+
+/ -> signup or login
+/shop -> shop
+/users/cart -> cart
+/admin -> admin panel
+/owner/products -> show all products
+/owner/admin -> show admin panel to create products
+
+
