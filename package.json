@@ -1,0 +1,8 @@
+{ 
+  "name": "laxminathkrishikendra",
+  "dependencies": {
+    "@google-cloud/translate": "^9.3.0"
+  },
+  "scripts": {"translate": "node scripts/translate.js"
+}
+}

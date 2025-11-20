@@ -39,6 +39,7 @@ app.use("/inventory", inventoryBulkCreate);
 app.use("/sales", saleRouter);
 // Optional root route
 app.get("/", (req, res) => res.send("Backend running"));
+const PORT = process.env.PORT || 3001;
 
 // Start server
-app.listen(3001, () => console.log("Backend running on port 3001"));
+app.listen(PORT, () => console.log(`Backend running on port ${PORT}`));
