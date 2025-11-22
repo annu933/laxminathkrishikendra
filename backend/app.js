@@ -8,7 +8,9 @@ const expressSession = require("express-session");
 const flash = require("connect-flash");
 
 // Middlewares
-app.use(cors());
+app.use(cors({
+  origin: "*",   // ⛔️ temporary for testing, then restrict
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
