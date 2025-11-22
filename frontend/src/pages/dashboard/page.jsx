@@ -1,26 +1,21 @@
 import React, { useState } from "react";
 import "../dashboard/dashboard.css"; // We'll write styles here
 import { useNavigate } from "react-router-dom";
+import { axiosInstance } from "../../context/ApiContext";
 
 const Dashboard = () => {
   const navigate = useNavigate();
   const [dashboardData, setDashboardData] = useState();
 
   React.useEffect(() => {
-    const fetchDashboard = async () => {
-      try {
-        const res = await fetch("/dashboard"); // proxy will send to 3001
-        const data = await res.json();
-        console.log(data); // { summary: 12 }
-        setDashboardData(data?.summary);
-      } catch (err) {
-        console.error("Error fetching dashboard:", err);
-      }
-    };
+    axiosInstance.get("/dashboard")
+      .then((res) => {
+        console.log("res", res.data);
+        setDashboardData(res.data?.summary);
+      })
+      .catch(err => console.log("error", err))
+  }, [])
 
-    fetchDashboard();
-  }, []);
-  console.log("dashboardData", dashboardData);
   return (
     <div className="dashboard-container">
       <h1 className="dashboard-title">Fertilizer Shop Dashboard</h1>

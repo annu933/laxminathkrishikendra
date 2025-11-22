@@ -94,4 +94,3 @@ module.exports.logout = async function (req, res) {
   res.cookie("token", "");
   res.redirect("/");
 };
-

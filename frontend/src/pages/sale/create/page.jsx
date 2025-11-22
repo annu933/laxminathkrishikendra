@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { axiosInstance } from "../../../context/ApiContext";
 
 const SaleForm = () => {
   const navigate = useNavigate();
@@ -12,12 +13,14 @@ const SaleForm = () => {
     customerName: "",
   });
 
-  // Fetch products on load
-  useEffect(() => {
-    fetch("/inventory")
-      .then((res) => res.json())
-      .then((data) => setProducts(data?.items || []))
-      .catch((err) => console.error("Failed to load products", err));
+
+  React.useEffect(() => {
+    axiosInstance.get("/inventory")
+      .then((res) => {
+        console.log("Fetched data:", res.data);
+        setProducts(res.data?.items);
+      })
+      .catch(err => console.log("error:", err));
   }, []);
 
   console.log("Products:", products);
@@ -53,26 +56,21 @@ const SaleForm = () => {
       ...formData,
     };
 
-    try {
-      const res = await fetch("/sale", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
 
-      if (res.ok) {
-        alert("Sale recorded successfully!");
-        setFormData({ quantitySold: "", sellingPrice: "", customerName: "" });
-        setSelectedProduct(null);
-        setSelectedProductId("");
-        navigate("/inventory");
-      } else {
-        alert("Failed to record sale.");
-      }
-    } catch (err) {
-      console.error(err);
-      alert("An error occurred while recording the sale.");
+    try {
+      const response = await axiosInstance.post("/sale/create", payload);
+      console.log("response-data", response.data)
+      alert("Sale recorded successfully!");
+      setFormData({ quantitySold: "", sellingPrice: "", customerName: "" });
+      setSelectedProduct(null);
+      setSelectedProductId("");
+      navigate("/inventory");
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      alert("Failed to record sale.");
     }
+
   };
 
   return (

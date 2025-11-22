@@ -1,38 +1,23 @@
-// const mongoose = require("mongoose");
-// const config = require("config");
-// require('dotenv').config();
-// const dbgr = require("debug")("development : mongoose");
-// mongoose
-//   .connect(`config.get(${MONGODB_URL})/bagshop`)
-//   .then(function () {
-//     dbgr("connected");
-//   })
-//   .catch(function (err) {
-//     dbgr("not connected", err);
-//   });
-
-// module.exports = mongoose.connection;
-
-
-
-
-const mongoose = require("mongoose"); 
-const config = require("config");
+const mongoose = require("mongoose");
 require("dotenv").config();
-const dbgr = require("debug")("development:mongoose");
 
-// Get URL from config OR fallback to .env
-const mongoUrl = config.has("MONGODB_URL")
-  ? config.get("MONGODB_URL")
-  : process.env.MONGODB_URL;
+const mongoUri = process.env.MONGO_URI;
+
+if (!mongoUri) {
+  console.error("❌ MONGO_URI is not set in environment variables");
+  process.exit(1);
+}
 
 mongoose
-  .connect(`${mongoUrl}/bagshop`)
-  .then(() => {
-    dbgr("connected to MongoDB");
+  .connect(mongoUri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
   })
+  .then(() => console.log("✅ Connected to MongoDB Atlas"))
   .catch((err) => {
-    dbgr("not connected", err);
+    console.error("❌ MongoDB connection error:", err);
+    process.exit(1);
   });
 
 module.exports = mongoose.connection;
+
