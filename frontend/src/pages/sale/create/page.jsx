@@ -58,13 +58,13 @@ const SaleForm = () => {
 
 
     try {
-      const response = await axiosInstance.post("/sale/create", payload);
+      const response = await axiosInstance.post("/sales/create", payload);
       console.log("response-data", response.data)
       alert("Sale recorded successfully!");
       setFormData({ quantitySold: "", sellingPrice: "", customerName: "" });
       setSelectedProduct(null);
       setSelectedProductId("");
-      navigate("/inventory");
+      navigate("/sales");
       return response.data;
     } catch (error) {
       console.log(error);

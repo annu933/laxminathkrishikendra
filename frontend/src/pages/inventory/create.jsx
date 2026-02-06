@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { axiosInstance } from "../../context/ApiContext";
+import { useNavigate } from "react-router-dom";
 
 const CreateInventory = ({ onAddSuccess }) => {
   const [formData, setFormData] = useState({
@@ -12,6 +13,7 @@ const CreateInventory = ({ onAddSuccess }) => {
     supplier: "",
     expiryDate: "",
   });
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,6 +28,7 @@ const CreateInventory = ({ onAddSuccess }) => {
     try {
       const response = await axiosInstance.post("/inventory/create", formData);
       console.log("response-data", response.data)
+      navigate("/inventory");
       return response.data;
     } catch (error) {
       console.log(error)

@@ -1,3 +1,4 @@
+// /Backend/app.js
 const express = require("express");
 const app = express();
 require("dotenv").config();
@@ -31,15 +32,17 @@ app.use(express.static(path.join(__dirname, "public")));
 require("./config/mongoose-connection");
 
 // Routes
+app.use("/users", require("./routes/usersRouter"))
 app.use("/dashboard", require("./routes/dashboardRouter"));
-app.use("/product", require("./routes/productsRouter"));
+app.use("/product", require("./routes/productRouter"));
 app.use("/inventory", require("./routes/invetoryRouter"));
 app.use("/inventory", require("./routes/inventory/bulk_create"));
 app.use("/sales", require("./routes/saleRouter"));
+app.use("/purchase", require("./routes/purchaseRouter"));
 
 app.get("/", (req, res) => res.send("Backend running"));
 
 // PORT FIX FOR RENDER
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Backend running on port ${PORT}`));
 

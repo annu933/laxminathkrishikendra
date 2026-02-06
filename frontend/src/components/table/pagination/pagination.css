@@ -1,0 +1,34 @@
+.pagination-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  border-top: 1px solid #e0e0e0;
+  font-size: 14px;
+}
+
+.pagination-left select {
+  margin-left: 6px;
+}
+
+.pagination-right button {
+  margin: 0 4px;
+  padding: 4px 8px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.pagination-right button.active {
+  color: #1976d2;
+  font-weight: 600;
+}
+
+.pagination-right button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.dots {
+  margin: 0 6px;
+}

@@ -5,7 +5,7 @@ const {
   loginUser,
   logout,
 } = require("../controllers/authController");
-const userModel = require("../Backend/models/user-model");
+// const userModel = require("../Backend/models/user-model");
 
 // router.get("/", async function (req, res) {
 //   try {

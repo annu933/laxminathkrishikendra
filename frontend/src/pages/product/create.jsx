@@ -1,8 +1,10 @@
+import { useNavigate } from "react-router-dom";
 import { axiosInstance } from "../../context/ApiContext";
 
 const React = require("react");
 
 function Create() {
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -12,6 +14,7 @@ function Create() {
     try {
       const response = await axiosInstance.post("/product/create", data);
       console.log("response-data", response.data)
+      navigate("/product")
       return response.data;
     } catch (error) {
       console.log(error)

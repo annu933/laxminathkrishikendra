@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const Inventory = require("../models/Inventorys"); // ✅ use Inventory model
+const Inventory = require("../models/Inventory"); // ✅ use Inventory model
 const multer = require("multer");
 
 const upload = multer();
@@ -56,9 +56,30 @@ router.post("/create", upload.none(), async (req, res) => {
 // Add this to inventoryRouter.js
 router.get("/", async (req, res) => {
   try {
-    const items = await Inventory.find().sort({ createdAt: -1 });
-    // console.log("items", items);
-    res.status(200).json({ items });
+
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+    const skip = (page - 1) * limit;
+
+    const totalRecords = await Inventory.countDocuments();
+
+    const inventory = await Inventory.find()
+      .sort({ createdAt: -1 })
+      .skip(skip)
+      .limit(limit);
+
+
+    // console.log("inventory", inventory);
+    res.status(200).json({
+      success: true,
+      results: inventory,
+      pagination: {
+        totalRecords,
+        totalPages: Math.ceil(totalRecords / limit),
+        currentPage: page,
+        limit
+      }
+    });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
